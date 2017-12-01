@@ -1,3 +1,18 @@
+.header{
+	height: 3em;
+	background-color: #cccccc;
+	margin: 0 auto;
+}
+
+#scoreboard{
+	float: left;
+}
+
+#menu{
+	float: right;
+}
+
+
 .interface {
 	width: 50%;
 	height: 200px;
@@ -15,8 +30,6 @@
 	font-size: 18px;
 	border-radius: 2px;
 	margin: auto;
-	position: relative;
-	bottom: 0;
 }
 
 .interface a:hover {
@@ -27,5 +40,6 @@
 
 #letterBank{
 	position: absolute;
+	bottom: 5%;
 	border-bottom: 0;
 }
