@@ -1,0 +1,8 @@
+.interface {
+	width: 50%;
+	height: 200px;
+	background-color: #cccccc;
+	margin: 10% auto;
+	padding: 20px;
+	border-radius: 5px;
+}
