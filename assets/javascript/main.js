@@ -3,12 +3,11 @@
 
 
 //when game starts
-function gamestart() {
-	prompt("Press any key to get started!");
+document.onloadstart = function(){
+	prompt("Press any key to begin");
 }
-
 //selet category
- 
+
 
 //define word choices
 var category = [
