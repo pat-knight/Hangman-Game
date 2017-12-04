@@ -3,20 +3,38 @@
 
 
 //when game starts
-document.onloadstart = function(){
-	prompt("Press any key to begin");
-}
-//selet category
+// window.onload = function(){
+// 	prompt("Press any key to begin");
+// }
 
 
 //define word choices
-var category = [
-var wordBankChar = ["Marty McFly", "Dr Emmett Brown", "Marvin Berry", "Biff Tannen", "Jennifer"], 
-var wordBankQuote = ["Great Scott", "This is heavy", "What are you looking at butthead", "I hate manure"],
-var wordBankObject = ["DeLorean", "Gray's Sports Almanac", "Manure"],
-]
+var wordbank = [
+["Marty McFly", "Dr Emmett Brown", "Marvin Berry", "Biff Tannen", "Jennifer"],
+["Great Scott", "This is heavy", "What are you looking at butthead", "I hate manure"],
+["DeLorean", "Gray's Sports Almanac", "Manure"],
+	];
+//select category
+var selectCategory = wordbank[Math.floor(Math.random() * wordbank.length)];
+
+var category = function() {
+	if (selectCategory === wordbank[0]) {
+		categoryChoice.innerHTML = "The category is Movie Characters";
+	} else if (selectCategory === wordbank[1]) {
+		categoryChoice.innerHTML = "The category is Movie Quotes";
+	} else {
+		categoryChoice.innerHTML = "The category is Important Movie Objects";
+}
+}
+
+console.log(selectCategory);
 //select word from wordbank at random
+
+var word = selectCategory[Math.floor(Math.random() * selectCategory.length)];
+
+console.log(word);
 	//split word into letters
+word.split();
 	//display underlined spaces for each letter in word
 
 
