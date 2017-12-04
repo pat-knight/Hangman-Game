@@ -3,11 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" href="assets/css/reset.css" type="text/css">
 	<link rel="stylesheet" href="assets/css/style.css" type="text/css">
-	<script type="text/javascript" src="assets/javascript/main.js"></script>
+	
 </head>
 <body>
-	<div class="header">
+	<div class="header hidden">
 		<div id="scoreboard">
 			Wins:
 		</div>
@@ -15,12 +16,21 @@
 			New Game
 		</div>
 	</div>
-	<div class="interface">
-		<div class="wordspace">
-			test word
-		</div>
-		<div id="letterBank">
-			<a href="" class="a">A</a>
+	<h1 class="unhidden">PRESS ANY KEY TO BEGIN</h1>
+	<div class="interface hidden">
+		<div id="categoryChoice"></div>
+		<div id="wordspace"></div>
+		<div id="letterBank"></div>
+		<div id="wrongGuesses">wrongGuesses</div>
+	</div>
+
+	<script type="text/javascript" src="assets/javascript/main.js"></script>
+</body>
+</html>
+
+
+
+<!-- <a href="" class="a">A</a>
 			<a href="" class="b">B</a>
 			<a href="" class="c">C</a>
 			<a href="" class="d">D</a>
@@ -45,9 +55,4 @@
 			<a href="" class="w">W</a>
 			<a href="" class="x">X</a>
 			<a href="" class="y">Y</a>
-			<a href="" class="z">Z</a>
-		</div>
-		<div class="categoryChoice"></div>
-	</div>
-</body>
-</html>
+			<a href="" class="z">Z</a> -->

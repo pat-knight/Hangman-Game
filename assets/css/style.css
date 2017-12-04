@@ -4,6 +4,10 @@
 	margin: 0 auto;
 }
 
+/*h1 {
+	text-align: center;
+	margin: 15% 0 0 0;
+}*/
 #scoreboard{
 	float: left;
 }
@@ -24,15 +28,17 @@
 	position: relative;
 }
 
-.interface a {
+#letter {
 	background-color: #eeeeee;
 	color: purple;
+	float: left;
 	font-size: 18px;
 	border-radius: 2px;
-	margin: auto;
+	margin: 5px;
+	padding: 3px;
 }
 
-.interface a:hover {
+#letter:hover {
 	color: green;
 	background-color: cyan;
 
@@ -43,3 +49,33 @@
 	bottom: 5%;
 	border-bottom: 0;
 }
+
+.categoryChoice {
+	display: block;
+	clear: none;
+}
+
+#unsolved {
+	float: left;
+	display: block;
+	font-size: 18px;
+	position: relative;
+	margin: 2px;
+}
+
+#wordspace {
+	width: 100%;
+}
+
+#wrongGuesses{
+	display: block;
+	clear: both;
+}
+
+/*.unhidden {
+	display: block;
+}
+
+.hidden {
+	display: none;
+}*/
