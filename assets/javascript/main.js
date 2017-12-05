@@ -2,15 +2,15 @@ window.onload = function init(){
 
 
 
-document.onkeypress = function unhide (){
-	var display = document.getElementByClassName("unhidden");
+// document.onkeypress = function unhide (){
+// 	var display = document.getElementByClassName("unhidden");
 
-		if (display.className == "unhidden") {
-			display.className == "hidden";
-		} else {
-			display.className == "unhidden";
-		}
-	}
+// 		if (display.className == "unhidden") {
+// 			display.className == "hidden";
+// 		} else {
+// 			display.className == "unhidden";
+// 		}
+// 	}
 
 //populate letter bank with buttons
 var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -66,11 +66,105 @@ console.log(word);
 
 var unsolvedWord = [];
 var unsolvedDiv = document.getElementById("wordspace");
-
+var blankSpace = "";
 for (var j = 0; j < word.length; j++) {
-	unsolvedWord.push("_");
-	wordspace.innerHTML = unsolvedWord.join(" ");
-}
+	// var specialChar = word.charAt(i);
+	// if (specialChar === " " || specialChar === "/'" || specialChar === "-"){
+	// 	blankSpace += x;
+	// } else {
+		unsolvedWord.push("_");
+		wordspace.innerHTML = unsolvedWord.join(" ");
+	}
+
+var remainingGuesses = 10;
+document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
+document.getElementById("wrongGuesses").innerHTML = remainingGuesses;
+
+wrongGuesses = [];
+var guess = document.addEventListener('keydown', function() {
+			alert("key pressed");
+		});
+    	// for (k = 0; k < word.length; k++) {
+    	// 	if (word.indexOf(guess) === -1) {
+    	// 		wrongGuesses.push(guess);
+    	// 		document.getElementById("wrongGuesses").innerHTML += guess;
+    	// 		remainingGuesses--;
+    	// 	} else {
+    	// 		for (var l = 0; l < word.length; l++) {
+    	// 			if (word[l] === guess) {
+    	// 				unsolvedWord[k] = guess;
+//     				}
+//     			}
+// }
+//     		// }
+//   }
+
+    
+//    }); 
+
+
+ 
+
+
+
+// document.onkeypress = function(keyPressed) {
+// var keyPressed = keyPressed || window.event,
+// charCode = keyPressed.keyCode || keyPressed.which,
+// lettersGuessed = String.fromCharCode(charCode);
+
+// wrongGuesses = [];
+//  document.getElementById("wrongGuesses").innerHTML += lettersGuessed;
+//  document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
+// 	function displayToGuess() {
+//  	pattern=""
+//  	for(k = 0; k < word.length; k++) {
+//   		if(keyCode.indexOf(word.charAt(k)) != -1)
+//    		pattern += (unsolvedWord.charAt(k)+" ")
+//   		else pattern += "_ "
+//  	}
+// }
+
+
+// $("#LearnStar").live("keypress",function(e)
+// {
+//     var s = String.fromCharCode(e.which);
+//     if (s.match(/[a-zA-Z\.]/))
+//         console.log(s + ' is a match!');
+// });
+       
+
+// if (word.indexOf(keyPressed) != -1){ // if the character is found
+//   for (var k = 0; k < word.length; k ++){ // loop on all characters
+//      if (word[i] == keyPressed) // if this is an occurance
+//        unsolved[i] = word[i];
+//   }
+// }else{
+//   // wrong choice
+//   remainingGuesses--;
+// }
+// }
+
+// if (word.indexOf(keyPressed) === -1){//letter is not in word
+// 	wrongGuesses.push("keyPressed"); //update letters guessed
+// 	} else {//letter is in word
+// 		//replace underscore with the letter
+// 		for (var k = 0; k < word.length; k++){
+// 			if (word[k] === keyPressed) {
+// 				unsolvedWord[k] = keyPressed;
+// 			} else {
+// 				remainingGuesses--;
+
+// 			if (remainingGuesses === 0) {
+// 			alert("you lose");
+// 			}
+// }
+// }
+// }
+// }
+
+
+// }
+
 
 
 // for (var j = 0; j < word.length; j++) {
