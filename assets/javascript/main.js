@@ -11,15 +11,20 @@ window.onload = function init(){
 // 			display.className == "unhidden";
 // 		}
 // 	}
-
+var validLetter;
+var prevGuessed;
+var indexNum;
+var choice; //key pressed
+var specialChar = 0;//special character count in word
+var guessesLeft = 9; //
 //populate letter bank with buttons
 var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-// grab div 
+// grab div to hold letters
 var lettersDiv = document.getElementById("letterBank");
 
 
-//create HTML content
+//insert letters array into lettersDiv
  for (i = 0; i < letters.length; i++) {
           var buttonDiv = document.createElement("div");
           buttonDiv.innerHTML = letters[i];
@@ -31,190 +36,118 @@ var lettersDiv = document.getElementById("letterBank");
 
 //define word choices
 var wordbank = [
-["Marty McFly", "Dr Emmett Brown", "Marvin Berry", "Biff Tannen", "Jennifer"],
-["Great Scott", "This is heavy", "What are you looking at butthead", "I hate manure"],
+["Marty McFly", "Dr. Emmett Brown", "Marvin Berry", "Biff Tannen", "Jennifer"],
+["Great Scott!", "This is heavy", "What are you looking at butthead", "I hate manure!"],
 ["DeLorean", "Gray's Sports Almanac", "Manure"],
 	];
 //select category
-  
-  var selectCategory = wordbank[Math.floor(Math.random() * wordbank.length)];
+ var selectCategory = wordbank[Math.floor(Math.random() * wordbank.length)];
 
-	if (selectCategory === wordbank[0]) {
-		categoryChoice.innerHTML = "The category is Movie Characters";
-	} else if (selectCategory === wordbank[1]) {
-		categoryChoice.innerHTML = "The category is Movie Quotes";
-	} else {
-		categoryChoice.innerHTML = "The category is Important Movie Objects";
+//   function categoryShow() {
+// 	if (selectCategory === wordbank[0]) {
+// 		categoryChoice.innerHTML = "The category is Movie Characters";
+// 	} else if (selectCategory === wordbank[1]) {
+// 		categoryChoice.innerHTML = "The category is Movie Quotes";
+// 	} else {
+// 		categoryChoice.innerHTML = "The category is Important Movie Objects";
 
-}
+// }
 
-console.log(selectCategory);
+// console.log(selectCategory);
 
-//select word from wordbank at random
+//   }
+
+//select word from category wordbank at random
 
 var word = selectCategory[Math.floor(Math.random() * selectCategory.length)];
-
-console.log(word);
-	//split word into letters
-word.split();
-
+// word = word.replace(/\s/g, "-")//replace spaces with "-"
 console.log(word);
 
-word = word.replace(/\s/g, "-");
-
+var unsolvedWord = word.split("");//split word into letters
+var guessArray = word.split("");//
+var solveArray = word.split("");
 console.log(word);
+console.log(unsolvedWord);
+console.log(guessArray);
 
-var unsolvedWord = [];
-var unsolvedDiv = document.getElementById("wordspace");
-var blankSpace = "";
-for (var j = 0; j < word.length; j++) {
-	// var specialChar = word.charAt(i);
-	// if (specialChar === " " || specialChar === "/'" || specialChar === "-"){
-	// 	blankSpace += x;
-	// } else {
-		unsolvedWord.push("_");
-		wordspace.innerHTML = unsolvedWord.join(" ");
+for (var j = 0; j <unsolvedWord.length; j++) {
+	if (unsolvedWord[j] === " "){
+		guessArray[j] = " ";//display spaces in word
+		specialChar += 1;// add to special character count
+	} else if (unsolvedWord[j] === "'") {
+		guessArray[j] === "'";//display ' in word
+		specialChar += 1;// add to special character count
+	} else if (unsolvedWord[j] === ".") {
+		guessArray[j] === ".";//display . in word
+		specialChar += 1;// add to special character count
+	} else if (unsolvedWord[j] === "!") {
+		guessArray[j] === "!";//display ! in word
+		specialChar += 1;// add to special character count
+	} else {
+		guessArray[j] = "_";//display _ for all normal letters
+	}
+}
+console.log(guessArray);
+document.getElementById("wordspace").innerHTML = guessArray.join("");
+
+var status = function (){
+	if (guessesLeft < 1) {
+		prompt("game over Doc!")
+	} for (var l = 0; l < letterCount.length; l++) {
+
+		if((validLetter.length + specialChar) === (word.length)){
+			prompt("you win!");
+		};
 	}
 
-var remainingGuesses = 10;
-document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
-document.getElementById("wrongGuesses").innerHTML = remainingGuesses;
-
-wrongGuesses = [];
-var guess = document.addEventListener('keydown', function() {	 
-      for (var k = 0; k < word.length; k++) {
-        if (word[k] === guess) {
-          geusses[i].innerHTML = guess;
-          counter += 1;
-        } 
-      }
-      var j = (word.indexOf(geuss));
-      if (j === -1) {
-        lives -= 1;
-        comments();
-        animate();
-      } else {
-        comments();
-      }
-    }
-  };
-		});
-
-something.addEventListener("onkeypress", ejejej);
-
-function ejejej(); {
-	console.log(this);
 }
-    	// for (k = 0; k < word.length; k++) {
-    	// 	if (word.indexOf(guess) === -1) {
-    	// 		wrongGuesses.push(guess);
-    	// 		document.getElementById("wrongGuesses").innerHTML += guess;
-    	// 		remainingGuesses--;
-    	// 	} else {
-    	// 		for (var l = 0; l < word.length; l++) {
-    	// 			if (word[l] === guess) {
-    	// 				unsolvedWord[k] = guess;
-//     				}
-//     			}
-// }
-//     		// }
-//   }
-
-    
-//    }); 
+var letterChoice = []; // blank array for repeat letters
+var wrongLetter = []; // blank array for wrong letters
+var correctLetter = []; // blank array for correct letters
+var usedLetters = document.getElementById("wrongGuesses"); // display of used letters
+var lives = document.getElementById("guessesLeft");
+// lives.innerHTML = guessesLeft;
 
 
- 
+// 
+document.onkeydown = function(e) {
+    console.log(e.key);
+    var isLetter = letters.indexOf(e.key);
+    var prevGuessed = letterChoice.indexOf(e.key);
+    var indexNum = solveArray.indexOf(e.key);
+    console.log(validLetter); 
+    console.log(prevGuessed); 
+	console.log(indexNum);
+	
+	if (isLetter !== -1) {
+		compare();
+	} else { 
+		alert("not a valid input");
+	}
+	}
 
-
-
-// document.onkeypress = function(keyPressed) {
-// var keyPressed = keyPressed || window.event,
-// charCode = keyPressed.keyCode || keyPressed.which,
-// lettersGuessed = String.fromCharCode(charCode);
-
-// wrongGuesses = [];
-//  document.getElementById("wrongGuesses").innerHTML += lettersGuessed;
-//  document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
-// 	function displayToGuess() {
-//  	pattern=""
-//  	for(k = 0; k < word.length; k++) {
-//   		if(keyCode.indexOf(word.charAt(k)) != -1)
-//    		pattern += (unsolvedWord.charAt(k)+" ")
-//   		else pattern += "_ "
-//  	}
-// }
-
-
-// $("#LearnStar").live("keypress",function(e)
-// {
-//     var s = String.fromCharCode(e.which);
-//     if (s.match(/[a-zA-Z\.]/))
-//         console.log(s + ' is a match!');
-// });
-       
-
-// if (word.indexOf(keyPressed) != -1){ // if the character is found
-//   for (var k = 0; k < word.length; k ++){ // loop on all characters
-//      if (word[i] == keyPressed) // if this is an occurance
-//        unsolved[i] = word[i];
-//   }
-// }else{
-//   // wrong choice
-//  
-// }
-
-// if (word.indexOf(keyPressed) === -1){//letter is not in word
-// 	wrongGuesses.push("keyPressed"); //update letters guessed
-// 	} else {//letter is in word
-// 		//replace underscore with the letter
-// 		for (var k = 0; k < word.length; k++){
-// 			if (word[k] === keyPressed) {
-// 				unsolvedWord[k] = keyPressed;
-// 			} else {
-// 				remainingGuesses--;
-
-// 			if (remainingGuesses === 0) {
-// 			alert("you lose");
-// 			}
-// }
-// }
-// }
-// }
-
-
-// }
-
-
-
-// for (var j = 0; j < word.length; j++) {
-// 	unsolvedWord[j] = "_ "
-// 	var unsolved = document.createElement("div");
-//      unsolved.innerHTML = unsolvedWord[j];
-//      unsolvedDiv.appendChild(unsolved);  
-//      unsolved.id = "unsolved";
-// } 
-
-
-
-
-
-
-
-//during gameplay
-//when letter pressed or clicked
-	//remove letter from available choices
-	//if letter is part of the word, 
-		//replace space with letter
-	//if letter is not part of word
-		//decrease available lives
-		//draw hangman 
-
-	//if letter selected brings available lives to 0, end game
-		//game over, try again?
-
-	//if letter selected is final correct letter
-		//increase wins
-		//victory screen/sound
-		//ask to play again
+	var compare = function () {
+		document.onkeydown = function(e) {
+		  var choice = (this.innerHTML);
+		//   this.setAttribute("class", "active");
+		  this.onkeydown = null;
+		  for (var k = 0; k < word.length; i++) {
+			if (word[k] === choice) {
+			  usedLetters[k].innerHTML = choice;
+			  validLetter.push(k);
+			} 
+		  }
+		  var check = (word.indexOf(choice));
+		  if (check === -1) {
+			guessesLeft -= 1;
+			letterCount += 1;
+			status();
+		  } else {
+		  }
+		}
+	}
 }
+
+
+
+

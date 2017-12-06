@@ -65,6 +65,7 @@
 
 #wordspace {
 	width: 100%;
+	letter-spacing: 2px;
 }
 
 #wrongGuesses{
