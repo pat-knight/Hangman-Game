@@ -81,9 +81,30 @@ document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
 document.getElementById("wrongGuesses").innerHTML = remainingGuesses;
 
 wrongGuesses = [];
-var guess = document.addEventListener('keydown', function() {
-			alert("key pressed");
+var guess = document.addEventListener('keydown', function() {	 
+      for (var k = 0; k < word.length; k++) {
+        if (word[k] === guess) {
+          geusses[i].innerHTML = guess;
+          counter += 1;
+        } 
+      }
+      var j = (word.indexOf(geuss));
+      if (j === -1) {
+        lives -= 1;
+        comments();
+        animate();
+      } else {
+        comments();
+      }
+    }
+  };
 		});
+
+something.addEventListener("onkeypress", ejejej);
+
+function ejejej(); {
+	console.log(this);
+}
     	// for (k = 0; k < word.length; k++) {
     	// 	if (word.indexOf(guess) === -1) {
     	// 		wrongGuesses.push(guess);
