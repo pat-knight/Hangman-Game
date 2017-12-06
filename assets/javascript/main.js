@@ -200,15 +200,6 @@ function ejejej(); {
 
 
 
-// // var possibleWord = words[Math.floor(Math.random() * words.length)];
-// document.getElementById("w").innerHTML = possibleWord;
-// // Space out possibleWord
-// var originalLength = possibleWord.length;
-// for (i = 0; i < originalLength; i++) {
-//     possibleWord = [possibleWord.slice(0, i*2+1), ' ', possibleWord.slice(i*2+1)].join('');
-
-// }
-
 
 //during gameplay
 //when letter pressed or clicked
