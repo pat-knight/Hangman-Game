@@ -161,8 +161,7 @@ function ejejej(); {
 //   }
 // }else{
 //   // wrong choice
-//   remainingGuesses--;
-// }
+//  
 // }
 
 // if (word.indexOf(keyPressed) === -1){//letter is not in word
