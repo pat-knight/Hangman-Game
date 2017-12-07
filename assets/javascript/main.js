@@ -93,7 +93,10 @@ document.getElementById("wordspace").innerHTML = guessArray.join("");
 var status = function (){
 	if (guessesLeft < 1) {
 		prompt("game over Doc!")
-	} for (var l = 0; l < letterCount.length; l++) {
+	} else if (guessesLeft > 1 && guessesLeft < 9) {
+		gamePlay();
+	}
+		for (var l = 0; l < letterCount.length; l++) {
 
 		if((validLetter.length + specialChar) === (word.length)){
 			prompt("you win!");
@@ -109,18 +112,26 @@ var lives = document.getElementById("guessesLeft");
 // lives.innerHTML = guessesLeft;
 
 
-// 
+// game play
+
 document.onkeydown = function(e) {
     console.log(e.key);
     var isLetter = letters.indexOf(e.key);
     var prevGuessed = letterChoice.indexOf(e.key);
-    var indexNum = solveArray.indexOf(e.key);
+    var matchCheck = solveArray.indexOf(e.key);
     console.log(validLetter); 
     console.log(prevGuessed); 
 	console.log(indexNum);
 	
 	if (isLetter !== -1) {
 		compare();
+
+		if (matchCheck < 0) { 
+			wrongGuesses.push(event.key);
+			usedLetters.append(event.key);
+		} else {
+			compare();
+		}
 	} else { 
 		alert("not a valid input");
 	}
@@ -134,7 +145,7 @@ document.onkeydown = function(e) {
 		  for (var k = 0; k < word.length; i++) {
 			if (word[k] === choice) {
 			  usedLetters[k].innerHTML = choice;
-			  validLetter.push(k);
+			  isLetter.push(k);
 			} 
 		  }
 		  var check = (word.indexOf(choice));
@@ -146,6 +157,7 @@ document.onkeydown = function(e) {
 		  }
 		}
 	}
+
 }
 
 
