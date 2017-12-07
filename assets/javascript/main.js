@@ -43,19 +43,23 @@ var wordbank = [
 //select category
  var selectCategory = wordbank[Math.floor(Math.random() * wordbank.length)];
 
-//   function categoryShow() {
-// 	if (selectCategory === wordbank[0]) {
-// 		categoryChoice.innerHTML = "The category is Movie Characters";
-// 	} else if (selectCategory === wordbank[1]) {
-// 		categoryChoice.innerHTML = "The category is Movie Quotes";
-// 	} else {
-// 		categoryChoice.innerHTML = "The category is Important Movie Objects";
+  function categoryShow() {
+	if (selectCategory === wordbank[0]) {
+		var showCat = document.getElementById("categoryChoice");
+		showCat.innerHTML = "The category is Movie Characters";
+	} else if (selectCategory === wordbank[1]) {
+		var showCat = document.getElementById("categoryChoice");
+		showCat.innerHTML = "The category is Movie Quotes";
+	} else {
+		var showCat = document.getElementById("categoryChoice");
+		showCat.innerHTML = "The category is Important Movie Objects";
+		
 
-// }
+}
 
-// console.log(selectCategory);
+console.log(selectCategory);
 
-//   }
+  }
 
 //select word from category wordbank at random
 
@@ -91,6 +95,7 @@ console.log(guessArray);
 document.getElementById("wordspace").innerHTML = guessArray.join("");
 
 
+
 var letterChoice = []; // array to store all letter selections, check for repeats
 var wrongLetter = []; //array for wrong letters
 var solveLetter = []; //array for correct letters
@@ -101,6 +106,7 @@ lives.innerHTML = ("Incorrect guesses remaining: " +guessesLeft);
 
 
 // game play
+
 
 document.onkeypress = function(fn) {
 	var choice = this.innerHTML;
@@ -118,33 +124,39 @@ document.onkeypress = function(fn) {
 
 
 	if (isLetter !== -1) { //key pressed is a valid letter 
-			// isLetter.className = ("selected");
+			// var newLetter = letters[isLetter];
+			// newLetter.id = "selected";  tried to change letter appearance after selection
+		
 			if (prevGuessed === -1) { //key pressed is not a repeat
 				
 				if (matchCheck < 0){ //letter is not in word
 					wrongLetter.push(fn.key);
 					document.getElementById("wrongGuesses").innerHTML = ("Incorrect letters guessed: " + wrongLetter.join(""));
 					guessesLeft -= 1;
+					lives.innerHTML = ("Incorrect guesses remaining: " + guessesLeft);
 					
-					if (lives < 1) {
+					if (guessesLeft < 1) {
 						alert("Game over Doc");
-					} 
+						init();
+					} }
 					 else {
-					for (var k = 0; k < word.length; k++) { //run key pressed through word
-					
-						if (word[k] === (fn.key) ) {//if match, push to correct letter array
-						solveLetter.push(fn.key);
-						document.getElementById("wordspace").innerHTML = guessArray.join("");
-
-						if((solveArray.length + specialChar) === (word.length)){
+					 for (var k = 0; k < solveArray.length; k++) { //run key pressed through word
+						if (solveArray[k] === fn.key ) {//if match, push to correct letter array
+							guessArray[k] = solveArray[k];
+							solveLetter.push(fn.key);
+							document.getElementById("wordspace").innerHTML = guessArray.join("");
+							console.log(guessArray);
+							if((solveArray.length + specialChar) === (word.length)){
 								prompt("you win!");
-									} else {
+							} else {
 
 									}
-				}
-			}
+						} else {
+
+								}
+							}
 			
-			} 
+						} 
 				
 			} else
 	
@@ -153,50 +165,14 @@ document.onkeypress = function(fn) {
 	}
 
 } else {
-	}
-} else {
 	alert ("not a valid entry");
-}
+} 
 }
 }
 
-	// function choiceAnalyze(){
-		
-	// }
-	  
-	
-	// if (isLetter !== -1) {
-	// 	compare();
 
-	// 	if (matchCheck < 0) { 
-	// 		wrongGuesses.push(event.key);
-	// 		usedLetters.append(event.key);
-	// 	} else {
-	// 		compare();
-	// 	}
-	// } else { 
-	// 	alert("not a valid input");
-	// }
-	// }
 
-	// var compare = function () {
-		
-	// 	  var choice = (this.innerHTML);
-	// 	  this.onkeydown = null;
-	// 	  for (var k = 0; k < word.length; i++) {
-	// 		if (word[k] === choice) {
-	// 		  usedLetters[k].innerHTML = choice;
-	// 		  isLetter.push(k);
-	// 		} 
-	// 	  }
-	// 	  var check = (word.indexOf(choice));
-	// 	  if (check === -1) {
-	// 		guessesLeft -= 1;
-	// 		letterCount += 1;
-	// 		status();
-	// 	  } else {
-	// 	  }
-	// 	}
+
 	
 
 

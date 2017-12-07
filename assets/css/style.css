@@ -38,7 +38,7 @@
 	padding: 3px;
 }
 
-.selected {
+#selected {
 	color: rgb(3, 6, 8);
 	background-color: rgb(243, 32, 29)
 }
