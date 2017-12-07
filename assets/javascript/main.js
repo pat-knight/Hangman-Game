@@ -1,22 +1,9 @@
 window.onload = function init(){
 
-
-
-// document.onkeypress = function unhide (){
-// 	var display = document.getElementByClassName("unhidden");
-
-// 		if (display.className == "unhidden") {
-// 			display.className == "hidden";
-// 		} else {
-// 			display.className == "unhidden";
-// 		}
-// 	}
-var validLetter;
-var prevGuessed;
-var indexNum;
 var choice; //key pressed
 var specialChar = 0;//special character count in word
 var guessesLeft = 9; //
+var score = 0; // total wins
 //populate letter bank with buttons
 var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
@@ -43,23 +30,22 @@ var wordbank = [
 //select category
  var selectCategory = wordbank[Math.floor(Math.random() * wordbank.length)];
 
-  function categoryShow() {
-	if (selectCategory === wordbank[0]) {
-		var showCat = document.getElementById("categoryChoice");
-		showCat.innerHTML = "The category is Movie Characters";
-	} else if (selectCategory === wordbank[1]) {
-		var showCat = document.getElementById("categoryChoice");
-		showCat.innerHTML = "The category is Movie Quotes";
-	} else {
-		var showCat = document.getElementById("categoryChoice");
-		showCat.innerHTML = "The category is Important Movie Objects";
+//   function categoryShow() {
+// 	if (selectCategory === wordbank[0]) {
+// 		var showCat = document.getElementById("categoryChoice");
+// 		showCat.innerHTML = "The category is Movie Characters";
+// 	} else if (selectCategory === wordbank[1]) {
+// 		var showCat = document.getElementById("categoryChoice");
+// 		showCat.innerHTML = "The category is Movie Quotes";
+// 	} else {
+// 		var showCat = document.getElementById("categoryChoice");
+// 		showCat.innerHTML = "The category is Important Movie Objects";
 		
 
-}
+// }
 
-console.log(selectCategory);
 
-  }
+//   }
 
 //select word from category wordbank at random
 
@@ -148,6 +134,9 @@ document.onkeypress = function(fn) {
 							console.log(guessArray);
 							if((solveArray.length + specialChar) === (word.length)){
 								prompt("you win!");
+								score += 1;
+								var wins = document.getElementById("scoreboard");
+								wins.innerHTML = ("Wins: " + score);
 							} else {
 
 									}
