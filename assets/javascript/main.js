@@ -49,9 +49,10 @@ var wordbank = [
 
 //select word from category wordbank at random
 
-var word = selectCategory[Math.floor(Math.random() * selectCategory.length)];
+var word1 = selectCategory[Math.floor(Math.random() * selectCategory.length)];
 // word = word.replace(/\s/g, "-")//replace spaces with "-"
-console.log(word);
+console.log(word1);
+word = word1.toLowerCase();
 
 var unsolvedWord = word.split("");//split word into letters
 var guessArray = word.split("");//
@@ -110,6 +111,7 @@ document.onkeypress = function(fn) {
 
 
 	if (isLetter !== -1) { //key pressed is a valid letter 
+			letterChoice.push(fn.key);
 			// var newLetter = letters[isLetter];
 			// newLetter.id = "selected";  tried to change letter appearance after selection
 		
@@ -132,8 +134,8 @@ document.onkeypress = function(fn) {
 							solveLetter.push(fn.key);
 							document.getElementById("wordspace").innerHTML = guessArray.join("");
 							console.log(guessArray);
-							if((solveArray.length + specialChar) === (word.length)){
-								prompt("you win!");
+							if(solveLetter.length === guessArray.length){
+								alert("you win!");
 								score += 1;
 								var wins = document.getElementById("scoreboard");
 								wins.innerHTML = ("Wins: " + score);
