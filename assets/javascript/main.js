@@ -65,7 +65,7 @@ console.log(word);
 
 var unsolvedWord = word.split("");//split word into letters
 var guessArray = word.split("");//
-var solveArray = []; //empty array for correct letters
+var solveArray = word.split(""); //empty array for correct letters
 console.log(word);
 console.log(unsolvedWord);
 console.log(guessArray);
@@ -90,59 +90,74 @@ for (var j = 0; j <unsolvedWord.length; j++) {
 console.log(guessArray);
 document.getElementById("wordspace").innerHTML = guessArray.join("");
 
-// var status = function (){
-// 	if (guessesLeft < 1) {
-// 		prompt("game over Doc!")
-// 	} else if (guessesLeft > 1 && guessesLeft < 9) {
-// 		gamePlay();
-// 	}
-// 		for (var l = 0; l < letterCount.length; l++) {
 
-// 		if((solveArray.length + specialChar) === (word.length)){
-// 			prompt("you win!");
-// 		};
-// 	}
-
-// }
 var letterChoice = []; // array to store all letter selections, check for repeats
 var wrongLetter = []; //array for wrong letters
 var solveLetter = []; //array for correct letters
 var usedLetters = document.getElementById("wrongGuesses"); // display of used letters
 usedLetters.innerHTML = (letterChoice);
 var lives = document.getElementById("guessesLeft");
+lives.innerHTML = ("Incorrect guesses remaining: " +guessesLeft);
 
 
 // game play
 
-document.onkeydown = function(fn) {
+document.onkeypress = function(fn) {
 	var choice = this.innerHTML;
-    console.log(fn.key);
+	console.log(fn.key);
     var isLetter = letters.indexOf(fn.key);
     var prevGuessed = letterChoice.indexOf(fn.key);
     var matchCheck = solveArray.indexOf(fn.key);
-    console.log(validLetter); 
+	console.log(isLetter); 
     console.log(prevGuessed); 
-	console.log(indexNum);
+	console.log(matchCheck);
+	console.log(letterChoice);
+	console.log(solveLetter);
 
 	
 
 
 	if (isLetter !== -1) { //key pressed is a valid letter 
-	 
-		for (var k = 0; k < word.length; k++) {
-			if word[k].innerHTML = choice;
+		
+			if (prevGuessed === -1) { //key pressed is not a repeat
+				
+				if (matchCheck < 0){ //letter is not in word
+					wrongLetter.push(fn.key);
+					usedLetters.push(fn.key);
+					lives -= 1;
+					
+					if (lives < 1) {
+						alert("Game over Doc");
+					} 
+					 else {
+					for (var k = 0; k < word.length; k++) { //run key pressed through word
+					
+						if (word[k].innerHTML = (fn.key) ) {//if match, push to correct letter array
+						solveLetter.push(fn.key);
 
-		}
+						if((solveArray.length + specialChar) === (word.length)){
+								prompt("you win!");
+									} else {
 
-		if (isLetter == prevGuessed) { //valid key also has not been guessed
-			letterChoice.push(choice);
-		}
-
-			// if ()
+									}
+				}
+			}
+			
+			} 
+				
+			} else
 	
-	} else {
-		alert ("not a valid entry");
+	 {
+		
 	}
+
+} else {
+	}
+} else {
+	alert ("not a valid entry");
+}
+}
+}
 
 	// function choiceAnalyze(){
 		
@@ -183,8 +198,6 @@ document.onkeydown = function(fn) {
 	// 	}
 	
 
-}
-}
 
 
 
