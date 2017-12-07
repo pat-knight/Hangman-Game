@@ -65,7 +65,7 @@ console.log(word);
 
 var unsolvedWord = word.split("");//split word into letters
 var guessArray = word.split("");//
-var solveArray = word.split("");
+var solveArray = []; //empty array for correct letters
 console.log(word);
 console.log(unsolvedWord);
 console.log(guessArray);
@@ -90,74 +90,100 @@ for (var j = 0; j <unsolvedWord.length; j++) {
 console.log(guessArray);
 document.getElementById("wordspace").innerHTML = guessArray.join("");
 
-var status = function (){
-	if (guessesLeft < 1) {
-		prompt("game over Doc!")
-	} else if (guessesLeft > 1 && guessesLeft < 9) {
-		gamePlay();
-	}
-		for (var l = 0; l < letterCount.length; l++) {
+// var status = function (){
+// 	if (guessesLeft < 1) {
+// 		prompt("game over Doc!")
+// 	} else if (guessesLeft > 1 && guessesLeft < 9) {
+// 		gamePlay();
+// 	}
+// 		for (var l = 0; l < letterCount.length; l++) {
 
-		if((validLetter.length + specialChar) === (word.length)){
-			prompt("you win!");
-		};
-	}
+// 		if((solveArray.length + specialChar) === (word.length)){
+// 			prompt("you win!");
+// 		};
+// 	}
 
-}
-var letterChoice = []; // blank array for repeat letters
-var wrongLetter = []; // blank array for wrong letters
-var correctLetter = []; // blank array for correct letters
+// }
+var letterChoice = []; // array to store all letter selections, check for repeats
+var wrongLetter = []; //array for wrong letters
+var solveLetter = []; //array for correct letters
 var usedLetters = document.getElementById("wrongGuesses"); // display of used letters
+usedLetters.innerHTML = (letterChoice);
 var lives = document.getElementById("guessesLeft");
-// lives.innerHTML = guessesLeft;
 
 
 // game play
 
-document.onkeydown = function(e) {
-    console.log(e.key);
-    var isLetter = letters.indexOf(e.key);
-    var prevGuessed = letterChoice.indexOf(e.key);
-    var matchCheck = solveArray.indexOf(e.key);
+document.onkeydown = function(fn) {
+	var choice = this.innerHTML;
+    console.log(fn.key);
+    var isLetter = letters.indexOf(fn.key);
+    var prevGuessed = letterChoice.indexOf(fn.key);
+    var matchCheck = solveArray.indexOf(fn.key);
     console.log(validLetter); 
     console.log(prevGuessed); 
 	console.log(indexNum);
+
 	
-	if (isLetter !== -1) {
-		compare();
 
-		if (matchCheck < 0) { 
-			wrongGuesses.push(event.key);
-			usedLetters.append(event.key);
-		} else {
-			compare();
+
+	if (isLetter !== -1) { //key pressed is a valid letter 
+	 
+		for (var k = 0; k < word.length; k++) {
+			if word[k].innerHTML = choice;
+
 		}
-	} else { 
-		alert("not a valid input");
-	}
-	}
 
-	var compare = function () {
-		document.onkeydown = function(e) {
-		  var choice = (this.innerHTML);
-		//   this.setAttribute("class", "active");
-		  this.onkeydown = null;
-		  for (var k = 0; k < word.length; i++) {
-			if (word[k] === choice) {
-			  usedLetters[k].innerHTML = choice;
-			  isLetter.push(k);
-			} 
-		  }
-		  var check = (word.indexOf(choice));
-		  if (check === -1) {
-			guessesLeft -= 1;
-			letterCount += 1;
-			status();
-		  } else {
-		  }
+		if (isLetter == prevGuessed) { //valid key also has not been guessed
+			letterChoice.push(choice);
 		}
+
+			// if ()
+	
+	} else {
+		alert ("not a valid entry");
 	}
 
+	// function choiceAnalyze(){
+		
+	// }
+	  
+	
+	// if (isLetter !== -1) {
+	// 	compare();
+
+	// 	if (matchCheck < 0) { 
+	// 		wrongGuesses.push(event.key);
+	// 		usedLetters.append(event.key);
+	// 	} else {
+	// 		compare();
+	// 	}
+	// } else { 
+	// 	alert("not a valid input");
+	// }
+	// }
+
+	// var compare = function () {
+		
+	// 	  var choice = (this.innerHTML);
+	// 	  this.onkeydown = null;
+	// 	  for (var k = 0; k < word.length; i++) {
+	// 		if (word[k] === choice) {
+	// 		  usedLetters[k].innerHTML = choice;
+	// 		  isLetter.push(k);
+	// 		} 
+	// 	  }
+	// 	  var check = (word.indexOf(choice));
+	// 	  if (check === -1) {
+	// 		guessesLeft -= 1;
+	// 		letterCount += 1;
+	// 		status();
+	// 	  } else {
+	// 	  }
+	// 	}
+	
+
+}
 }
 
 
