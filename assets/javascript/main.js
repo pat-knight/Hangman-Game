@@ -95,7 +95,7 @@ var letterChoice = []; // array to store all letter selections, check for repeat
 var wrongLetter = []; //array for wrong letters
 var solveLetter = []; //array for correct letters
 var usedLetters = document.getElementById("wrongGuesses"); // display of used letters
-usedLetters.innerHTML = (letterChoice);
+usedLetters.innerHTML = (wrongLetter);
 var lives = document.getElementById("guessesLeft");
 lives.innerHTML = ("Incorrect guesses remaining: " +guessesLeft);
 
@@ -118,13 +118,13 @@ document.onkeypress = function(fn) {
 
 
 	if (isLetter !== -1) { //key pressed is a valid letter 
-		
+			// isLetter.className = ("selected");
 			if (prevGuessed === -1) { //key pressed is not a repeat
 				
 				if (matchCheck < 0){ //letter is not in word
 					wrongLetter.push(fn.key);
-					usedLetters.push(fn.key);
-					lives -= 1;
+					document.getElementById("wrongGuesses").innerHTML = ("Incorrect letters guessed: " + wrongLetter.join(""));
+					guessesLeft -= 1;
 					
 					if (lives < 1) {
 						alert("Game over Doc");
@@ -132,8 +132,9 @@ document.onkeypress = function(fn) {
 					 else {
 					for (var k = 0; k < word.length; k++) { //run key pressed through word
 					
-						if (word[k].innerHTML = (fn.key) ) {//if match, push to correct letter array
+						if (word[k] === (fn.key) ) {//if match, push to correct letter array
 						solveLetter.push(fn.key);
+						document.getElementById("wordspace").innerHTML = guessArray.join("");
 
 						if((solveArray.length + specialChar) === (word.length)){
 								prompt("you win!");
